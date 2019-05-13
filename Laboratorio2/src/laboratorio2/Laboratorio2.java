@@ -18,37 +18,79 @@ public class Laboratorio2 {
         // Se ingresa el scaner 
         Scanner entrada = new Scanner(System.in);
         // Se definen variables 
-        String nombres;
-        String apellidos;
+        String mensaje ; 
+        String nombre;
+        String comparacion ;
+        boolean inicio = true;
         int num_h = 0;
-        int sueldo ;
-        int cont = 1;
-        int psj = 0;
-        int bar = 0;
-        int sld = 0; 
-        // Ingresamos los primeros datos como nombres y apellido 
-        System.out.println("Ingrese sus Nombres");
-        nombres = entrada.nextLine();
-        System.out.println("Ingrese sus Apellidos");
-        apellidos = entrada.nextLine();
-        System.out.println("Ingrese su sueldo semanal");
-        sueldo = entrada.nextInt();
-        System.out.println("Ingrese el numero de hijos");
-        num_h = entrada.nextInt();
-        // empezamos el ciclo aqui con la variable num_h 
-        while(cont <=num_h ){// el ciclo termina cuando el contador sea igual a num_h 
+        double sueldo= 0 ;
+        int cont = 0;
+        double psj = 0;
+        double psjT = 0;
+        double bar = 0;
+        double barT = 0;
+        double sld = 0; 
+        double sldT = 0; 
+        int cont2 = 0;
+        double total = 0;
+        String salida; 
+        // un mensaje que solo se mostrara una vez y no se repetira 
+        mensaje = "Reporte de Gastos";
+        while(inicio){// el primer ciclo para almacenar los primero datos
+             // Ingresamos los primeros datos como nombres y apellido 
+            System.out.println("Ingrese su Nombre y apellido");
+            nombre = entrada.nextLine();
+            System.out.println("Ingrese su sueldo semanal");
+            sueldo = entrada.nextInt();
+            System.out.println("Ingrese el numero de hijos");
+            num_h = entrada.nextInt();
             
-            System.out.println("Ingrese los gastado en Pasajes");
-            psj = entrada.nextInt();
-            System.out.println("Ingrese los gastos en el Bar");
-            bar = entrada.nextInt();   
-            System.out.println("Ingrese los gastos de la Salida");
-            sld = entrada.nextInt();  
-            
-            cont = cont+1;// contador se suma para igualar al numero de hijos  
-            System.out.printf("El Señor%s%s\nPasajes%d\tBar%d\tsalidas%d\t", nombres, apellidos, psj, bar, sld);
+             mensaje = String.format("%s\n Reporte%d\n\nNombre y apellido:\n" 
+                    +  "%s\n Sueldo Semanal:%.2f\numero de hijos:%d\n\n" 
+                    +  "\nReporte de gastos\n Persona\tPasajes\tBar\t\t\n" 
+                    +  "\" Salidas \"", mensaje, nombre, sueldo, 
+                                           num_h);
+            // empezamos el segundo ciclo aqui con la variable num_h 
+            while(cont2 <=num_h ){// el ciclo termina cuando el contador sea igual a num_h 
+
+                System.out.printf("Ingrese los gastado en Pasajes hijo%d\n" 
+                        ,cont2);
+                psj = entrada.nextFloat();
+                System.out.printf("Ingrese los gastos en el Bar hijo%d\n",
+                        cont2);
+                bar = entrada.nextFloat();   
+                System.out.printf("Ingrese los gastos de la Salida hijo%d\n"
+                        ,cont2);
+                sld = entrada.nextFloat();  
+                cont2++;// contador se suma para igualar al numero de hijos  
+                mensaje = String.format("%s\nhijo%d\t\t$%.2f\t$%.2f\t\t$\n" 
+                        + " %.2f\n ", mensaje, cont2, psj, bar, sld); 
+                // operaciones de suma total
+                psjT = psjT + psj;
+                barT = barT + bar;
+                sldT = sldT + sld;    
         }
-    //System.out.printf("El Señor%s%s\nPasajes%d\tBar%d\tsalidas%d\t", nombres, apellidos, psj, bar, sld);
-    }
-    
-}
+        total= psjT + barT + sldT; 
+        if (sueldo < total){// comparacion del sueldo para saber si da o no para los gastos 
+            comparacion = "falta";
+        }else{
+            comparacion = "alcanza";
+        }
+ 
+        mensaje = String.format("%s\nTotal\t$%.2f\t$%.2f\t$%.2f" 
+                    +  "\n%sEl padre de familia Padre%sel sueldo semanal es de\n" 
+                    +  "\n", mensaje, psjT, barT, sldT, nombre, 
+                    comparacion);
+        cont++;
+        // salida de bucle 
+        System.out.printf("\nDigite (no) desea continuar, digite (si) si desea "
+                + "salir");
+        salida= entrada.nextLine();
+        if (salida.equals("si")){
+            inicio= false;
+        }
+        // presentacion final 
+        System.out.printf(mensaje);
+        }
+    }    
+}    
