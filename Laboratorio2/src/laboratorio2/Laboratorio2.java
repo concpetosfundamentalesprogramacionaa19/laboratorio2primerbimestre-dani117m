@@ -31,7 +31,7 @@ public class Laboratorio2 {
         double barT = 0;
         double sld = 0; 
         double sldT = 0; 
-        int cont2 = 0;
+        int cont2 = 1;
         double total = 0;
         String salida; 
         // un mensaje que solo se mostrara una vez y no se repetira 
@@ -45,25 +45,25 @@ public class Laboratorio2 {
             System.out.println("Ingrese el numero de hijos");
             num_h = entrada.nextInt();
             
-             mensaje = String.format("%s\n Reporte%d\n\nNombre y apellido:\n" 
-                    +  "%s\n Sueldo Semanal:%.2f\numero de hijos:%d\n\n" 
-                    +  "\nReporte de gastos\n Persona\tPasajes\tBar\t\t\n" 
-                    +  "\" Salidas \"", mensaje, nombre, sueldo, 
+             mensaje = String.format("%s\n \n\n Nombre y apellido:\n" 
+                    +  "%s\n Sueldo Semanal: %.2f\n numero de hijos: %d\n\n" 
+                    +  "\n Reporte de gastos \n Persona \tPasajes \t Bar \t\t\n" 
+                    +  "Salidas ", mensaje, nombre, sueldo, 
                                            num_h);
             // empezamos el segundo ciclo aqui con la variable num_h 
             while(cont2 <=num_h ){// el ciclo termina cuando el contador sea igual a num_h 
 
-                System.out.printf("Ingrese los gastado en Pasajes hijo%d\n" 
+                System.out.printf("Ingrese los gastado en Pasajes hijo %d\n" 
                         ,cont2);
                 psj = entrada.nextFloat();
-                System.out.printf("Ingrese los gastos en el Bar hijo%d\n",
+                System.out.printf("Ingrese los gastos en el Bar hijo %d\n",
                         cont2);
                 bar = entrada.nextFloat();   
-                System.out.printf("Ingrese los gastos de la Salida hijo%d\n"
+                System.out.printf("Ingrese los gastos de la Salida hijo %d\n"
                         ,cont2);
                 sld = entrada.nextFloat();  
                 cont2++;// contador se suma para igualar al numero de hijos  
-                mensaje = String.format("%s\nhijo%d\t\t$%.2f\t$%.2f\t\t$\n" 
+                mensaje = String.format("%s\n hijo %d\t\t $%.2f\t $%.2f\t\t $\n" 
                         + " %.2f\n ", mensaje, cont2, psj, bar, sld); 
                 // operaciones de suma total
                 psjT = psjT + psj;
@@ -77,13 +77,14 @@ public class Laboratorio2 {
             comparacion = "alcanza";
         }
  
-        mensaje = String.format("%s\nTotal\t$%.2f\t$%.2f\t$%.2f" 
-                    +  "\n%sEl padre de familia Padre%sel sueldo semanal es de\n" 
-                    +  "\n", mensaje, psjT, barT, sldT, nombre, 
+        mensaje = String.format("\n%s Total \t $%.2f\t $%.2f\t $%.2f" 
+                    +  "\n%s El padre de familia Padre ,su sueldo"
+                    +  "semanal es de $%.2f su sueldo %s\n\n" 
+                    +   mensaje, psjT, barT, sldT, nombre,sueldo, 
                     comparacion);
         cont++;
         // salida de bucle 
-        System.out.printf("\nDigite (no) desea continuar, digite (si) si desea "
+        System.out.printf("\n Digite (no) desea continuar, digite (si) si desea "
                 + "salir");
         salida= entrada.nextLine();
         if (salida.equals("si")){
